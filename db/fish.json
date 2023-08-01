@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Flipper",
+    "email": "thomas.goerldt@actyvyst.com",
+    "color": "#fb5607",
+    "secret": "I am not a fish!",
+    "icon": "🐬"
+  },
+  {
+    "id": "2",
+    "name": "Dorie",
+    "email": "thomas.goerldt@neuefische.de",
+    "color": "#2ec4b6",
+    "secret": "I am afraid of water",
+    "icon": "🐟"
+  },
+  {
+    "id": "3",
+    "name": "Sushi",
+    "email": "test@example.com",
+    "color": "#7b2cbf",
+    "secret": "I am special",
+    "icon": "🍣"
+  }
+]

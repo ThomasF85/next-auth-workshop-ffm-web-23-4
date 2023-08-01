@@ -1,38 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Authentifizierung mit NextAuth
 
-## Getting Started
+## Was ist Authentifizierung?
 
-First, run the development server:
+Authentifizierung ist die Verifizierung der Identität eines Benutzers.
+Authentifizierung beantwortet die Frage "Wer ist der Benutzer?", Autorisierung
+hingegen die Frage "Was darf der Benutzer?"
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Warum brauchen wir das?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Viele unserer Apps erlauben es dem Benutzer, eigene Daten zu speichern und
+wieder abzurufen.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Um die Daten eines Benutzers vor dem Zugriff anderer Benutzer zu schützen,
+müssen wir dafür sorgen, dass unsere API geschützte Daten nur an einen
+authentifizierten User zurückgibt.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Außerdem möchten wir in unserer Web-App bestimmte Funktionalitäten nur für
+angemeldete Nutzer sichtbar machen und den Nutzer z.B. mit seinem Namen begrüßen
+können.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Was sind Authentication Provider?
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Authentication Provider sind Institutionen/Systeme, die die Identität eines
+Nutzers für uns überprüfen. Bekannte Authentication Provider sind z.B. Google,
+Facebook oder (unter Entwicklern) Github.
 
-## Learn More
+Hat sich ein Nutzer erfolgreich authentifiziert, stellen die Systeme ihm einen
+zeitlich begrenzten "Pass" in Form eines digital signierten
+Authentifizierungs-Tokens aus. Mit diesem Token ruft der Nutzer dann unsere
+geschützten API-Routen auf. Da wir dem Authentication Provider und der digitalen
+Signatur vertrauen, können wir den privaten Content des Users ausgeben.
 
-To learn more about Next.js, take a look at the following resources:
+## Was passiert im Hintergrund?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Auth Flow Image](auth-flow.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Was ist NextAuth?
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+NextAuth ist ein Package, das uns sehr viele Aspekte des
+Authentifizierungs-Flows abnimmt, insbesondere die Kommunikation mit den
+Authentication Providern und den Zugriff auf Informationen zum eingeloggten

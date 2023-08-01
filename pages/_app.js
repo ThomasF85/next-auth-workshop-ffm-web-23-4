@@ -1,5 +1,16 @@
-import '@/styles/globals.css'
+import GlobalStyles from "../styles/GlobalStyles";
+import { StyledContainer } from "../components/StyledContainer";
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <GlobalStyles />
+      <StyledContainer>
+        <h1>🐬 Next Auth Demo 🐬</h1>
+        <Component {...pageProps} />
+      </StyledContainer>
+    </>
+  );
 }
+
+export default MyApp;
