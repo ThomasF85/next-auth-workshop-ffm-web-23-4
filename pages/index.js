@@ -1,35 +1,19 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { StyledContainer } from "../components/StyledContainer";
+import useSWR from "swr";
 import { StyledButton } from "../components/StyledButton";
 
 export default function Home() {
-  const [fishData, setFishData] = useState([]);
+  const { data, isLoading, error } = useSWR("/api/fish");
 
-  useEffect(() => {
-    const loadFishData = async () => {
-      try {
-        const response = await fetch("/api/fish");
-        if (!response.ok) {
-          throw new Error(
-            `Response failed with status code ${response.status}`
-          );
-        }
-        const data = await response.json();
-        setFishData(data);
-      } catch (error) {
-        console.log(error);
-        alert(error.message);
-      }
-    };
-    loadFishData();
-  }, []);
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <StyledContainer>
       <StyledList>
-        {fishData.map((fish) => {
+        {data.map((fish) => {
           return (
             <StyledListItem key={fish.id} $fishIcon={fish.icon}>
               <StyledLink href={`/fish/${fish.id}`}>{fish.name}</StyledLink>
