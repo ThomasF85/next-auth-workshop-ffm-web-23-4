@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { StyledContainer } from "../../components/StyledContainer";
 import { FishCard } from "../../components/FishCard";
 import useSWR from "swr";
+import { UnauthorizedCard } from "@/components/UnauthorizedCard";
 
 export const FishDetails = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ export const FishDetails = () => {
     if (error.status === 401) {
       return (
         <StyledContainer>
-          <FishCard isLocked />
+          <UnauthorizedCard />
         </StyledContainer>
       );
     }

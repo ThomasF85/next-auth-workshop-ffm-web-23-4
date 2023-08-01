@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Flipper",
-    "email": "thomas.goerldt@actyvyst.com",
+    "ownerEmail": "thomas.foeldi@gmail.com",
     "color": "#fb5607",
     "secret": "I am not a fish!",
     "icon": "🐬"
@@ -10,7 +10,7 @@
   {
     "id": "2",
     "name": "Dorie",
-    "email": "thomas.goerldt@neuefische.de",
+    "ownerEmail": "john.doe@gmail.com",
     "color": "#2ec4b6",
     "secret": "I am afraid of water",
     "icon": "🐟"
@@ -18,7 +18,7 @@
   {
     "id": "3",
     "name": "Sushi",
-    "email": "test@example.com",
+    "ownerEmail": "jane.doe@gmail.com",
     "color": "#7b2cbf",
     "secret": "I am special",
     "icon": "🍣"
