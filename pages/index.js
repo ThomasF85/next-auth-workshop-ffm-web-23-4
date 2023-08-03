@@ -3,15 +3,28 @@ import Link from "next/link";
 import { StyledContainer } from "../components/StyledContainer";
 import useSWR from "swr";
 import { StyledButton } from "../components/StyledButton";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Home() {
   const { data, isLoading, error } = useSWR("/api/fish");
+  const { data: session } = useSession();
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
+  console.log(session?.user);
   return (
     <StyledContainer>
+      <StyledSection>
+        {session ? (
+          <>
+            <StyledButton onClick={signOut}>Logout</StyledButton>
+            <p>Signed in as {session.user.email}</p>
+          </>
+        ) : (
+          <StyledButton onClick={() => signIn()}>Sign In</StyledButton>
+        )}
+      </StyledSection>
       <StyledList>
         {data.map((fish) => {
           return (

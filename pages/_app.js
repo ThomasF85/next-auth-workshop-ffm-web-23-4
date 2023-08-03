@@ -1,6 +1,7 @@
 import GlobalStyles from "../styles/GlobalStyles";
 import { StyledContainer } from "../components/StyledContainer";
 import { SWRConfig } from "swr";
+import { SessionProvider } from "next-auth/react";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -18,7 +19,7 @@ const fetcher = async (url) => {
   return res.json();
 };
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>
       <GlobalStyles />
@@ -29,7 +30,9 @@ function MyApp({ Component, pageProps }) {
             fetcher,
           }}
         >
-          <Component {...pageProps} />
+          <SessionProvider session={session}>
+            <Component {...pageProps} />
+          </SessionProvider>
         </SWRConfig>
       </StyledContainer>
     </>
