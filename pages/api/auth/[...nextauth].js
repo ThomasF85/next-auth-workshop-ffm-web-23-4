@@ -39,7 +39,26 @@ if (process.env.VERCEL_ENV === "preview") {
   );
 }
 
+function getRoleOfUser(email) {
+  if (email === "thomas.foeldi@gmail.com") {
+    return "admin";
+  }
+  return "viewer";
+}
+
 export const authOptions = {
   providers,
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = getRoleOfUser(user.email);
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.role = token.role;
+      return session;
+    },
+  },
 };
 export default NextAuth(authOptions);
